@@ -16,12 +16,12 @@ class Req01ConsultarFeriado {
 
 	@Test
 	void ct01_consultar_feriado_com_sucesso() {
-		String urlBase = "https://api.invertexto.com/v1/holidays/2023?token=1234&state=SP";
+		String urlBase = "https://api.invertexto.com/v1/holidays/2023?token=5375|iZWol7ut7lmLcdxUQn8OFfrdEvIyzDST&state=SP";
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		record Feriado(String date, String name, String type, String level){};
-		HttpEntity request = new HttpEntity<>(headers);
+		HttpEntity<String> request = new HttpEntity<>(headers);
 		ResponseEntity<String> response = restTemplate.exchange(urlBase, HttpMethod.GET, request, String.class);
 		// validar o status retornado
 		assertEquals("200 OK", response.getStatusCode().toString());
